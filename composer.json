@@ -11,9 +11,9 @@
     ],
     "require": {
         "php": ">=8.0",
-        "nacosvel/container-interop": "^2.0",
-        "nacosvel/helper": "^3.0",
-        "nacosvel/open-http": "^1.5"
+        "nacosvel/container-interop": "^1.0",
+        "nacosvel/helper": "^1.0",
+        "nacosvel/open-http": "^1.0"
     },
     "autoload": {
         "psr-4": {
