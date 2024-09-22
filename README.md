@@ -252,4 +252,4 @@ For a custom request instance, you need to return an instance of `GuzzleHttp\Cli
 
 ## License
 
-Guzzle is made available under the MIT License (MIT). Please see [License File](LICENSE) for more information.
+Nacosvel Feign is made available under the MIT License (MIT). Please see [License File](LICENSE) for more information.
