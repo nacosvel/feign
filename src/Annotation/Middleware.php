@@ -28,7 +28,7 @@ class Middleware implements MiddlewareInterface
      */
     public function getRequest(): RequestMiddlewareInterface|null
     {
-        return is_subclass_of($this->request, RequestMiddlewareInterface::class) ? new $this->request() : null;
+        return is_subclass_of($this->request, RequestMiddlewareInterface::class) ? new $this->request : null;
     }
 
     /**
