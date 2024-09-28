@@ -16,6 +16,9 @@ abstract class Configuration implements ConfigurationInterface
             'https://httpbin.ceshiren.com/',
             'https://httpbin.org/',
         ],
+        'rooter-server' => [
+            'http://127.0.0.1:8086',
+        ],
     ];
 
     protected array $consumes = [
