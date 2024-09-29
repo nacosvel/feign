@@ -3,6 +3,7 @@
 namespace Nacosvel\Feign\Annotation;
 
 use Attribute;
+use GuzzleHttp\Promise\PromiseInterface;
 use Nacosvel\Feign\Contracts\MiddlewareInterface;
 use Nacosvel\Feign\Contracts\RequestMiddlewareInterface;
 use Nacosvel\Feign\Contracts\ResponseMiddlewareInterface;
@@ -64,7 +65,11 @@ class Middleware implements MiddlewareInterface
     public function __invoke(callable $handler): callable
     {
         return function (RequestInterface $request, array $options) use ($handler) {
-            return $handler(call_user_func([$this->getRequest() ?? $this, 'request'], $request, $options), $options)->then(
+            $request = call_user_func([$this->getRequest() ?? $this, 'request'], $request, $options);
+            if ($request instanceof PromiseInterface) {
+                return $request;
+            }
+            return $handler($request, $options)->then(
                 function (ResponseInterface $response) use ($request, $options) {
                     return call_user_func([$this->getResponse() ?? $this, 'response'], $request, $response, $options);
                 }
@@ -72,7 +77,7 @@ class Middleware implements MiddlewareInterface
         };
     }
 
-    public function request(RequestInterface $request, array $options): RequestInterface
+    public function request(RequestInterface $request, array $options): RequestInterface|PromiseInterface
     {
         return $request;
     }
