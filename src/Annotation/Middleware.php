@@ -13,8 +13,8 @@ use Psr\Http\Message\ResponseInterface;
 #[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_PROPERTY | Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
 class Middleware implements MiddlewareInterface
 {
-    private string $request  = '';
-    private string $response = '';
+    protected string $request  = '';
+    protected string $response = '';
 
     public function __construct(
         string $request,
