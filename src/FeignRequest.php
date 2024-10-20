@@ -45,7 +45,7 @@ class FeignRequest implements FeignRequestInterface
                 ->chain($this->buildPath())
                 ->request($this->buildMethod(), $this->buildOptions());
         } catch (BadResponseException $exception) {
-            return $exception->getResponse();
+            throw new FeignException($exception->getResponse()->getBody()->getContents(), $exception->getCode(), $exception);
         } catch (Exception $exception) {
             throw new FeignException($exception->getMessage(), $exception->getCode(), $exception);
         }
